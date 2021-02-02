@@ -42,13 +42,19 @@ public class NeuralNetwork {
             int now = (int) (i * 100 / (double) epochs);
             if (now > lastTime) {
 
-                System.out.printf("%2d ... ", now);
+                System.out.print(".");
                 lastTime = now;
                 if (now % 10 == 0) {
-                    System.out.println(" ");
+                    System.out.printf("%2d %n", now);
                 }
             }
         }
+        System.out.println("100");
+    }
+
+    private void train(double[] Input, double[] Target) {
+        feedForward(Input);
+        propagateBack(Target);
     }
 
     public void feedForward(double[] Input) {
@@ -81,10 +87,5 @@ public class NeuralNetwork {
             biases[i - 1].add(gradient);
 
         }
-    }
-
-    private void train(double[] Input, double[] Target) {
-        feedForward(Input);
-        propagateBack(Target);
     }
 }
